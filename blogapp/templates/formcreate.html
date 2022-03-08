@@ -1,0 +1,13 @@
+<h1>django form을 이용한 새 글 작성 페이지</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+  <!-- 파일을 업로드 하기 위해 enctype="multipart/form-data"를 추가해야한다 -->
+  {% csrf_token %}
+  <table>
+    <!-- views.py에서 render의 세번째 인자로 받은 값 {{ 인자값 }}를 이용 -->
+    <!-- .as_table: table태그 없어도 table로 감싸진 형태를 출력 -->
+    <!-- .as_p: p태그 없어도 p로 감싸진 형태를 출력 -->
+    <!-- .as_ul: ul태그 없어도 ul로 감싸진 형태를 출력 -->
+    {{ form.as_table }}  
+  </table>
+  <input type="submit" vlaue="글쓰기">
+</form>

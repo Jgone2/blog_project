@@ -1,0 +1,18 @@
+<h1>My Blog</h1>
+
+<!-- 이 공간에는 블로그 글들의 목록을 보여줄 예정 -->
+<!-- QuerySet: DB로부터 전달받은 객체 목록 -->
+<!-- {{ posts }} -->
+{% for post in posts %}
+<a href="{% url 'detail' post.id %}"><h3>제목: {{ post.title }}</h3></a>
+<h4>작성일자: {{ post.date }}</h4>
+django가 만든, 블로그 객체 생성 순서에 해당하는 보이지 않는 PK: {{ post.id }}
+<h6>본문: {{ post.content }}</h6>
+{% endfor %}
+
+<!-- html Form을 이용한 새 글 작성 -->
+<a href="{% url 'new' %}">HTML을 이용한 새 글 작성</a><br />
+<!-- django Form을 이용한 새 글 작성 -->
+<a href="{% url 'formcreate' %}">django form을 이용한 새 글 작성</a><br />
+<!-- model Form을 이용한 새 글 작성 -->
+<a href="{% url 'modelformcreate' %}">model form을 이용한 새 글 작성</a>

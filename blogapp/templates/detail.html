@@ -1,0 +1,27 @@
+<h1>제목</h1>
+{{ blog_detail.title }}
+<h2>날짜</h2>
+{{ blog_detail.date }}
+<h3>본문</h3>
+{{ blog_detail.content }}
+
+{% if blog_detail.photo %}
+  <h4>첨부이미지</h4>
+  <!-- {{ blog_detail.photo }}      # 파일명 출력 -->
+  {{ blog_detail.photo.url }}  # 파일의 url 출력
+  <!-- {{ blog_detail.photo.path }} # 내 컴퓨터상에 저장되어 있는 파일의 위치(보안이 취약해지기 때문에 사용하지 않을 것) -->
+  <img src="{{ blog_detail.photo.url }}" alt="" width="500" height="500">
+{% endif %}
+
+<h3>댓글</h3>
+<form action="{% url 'create_comment' blog_detail.id %}" method="POST">
+  {% csrf_token %}
+  {{ comment_form }}
+  <input type="submit" />
+</form>
+
+<!-- 댓글 목록 -->
+{% for comment in blog_detail.comment_set.all %}
+  <p>{{ comment }}</p>
+  <hr />
+{% endfor %}
